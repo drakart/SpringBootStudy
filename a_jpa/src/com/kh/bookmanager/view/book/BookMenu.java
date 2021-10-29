@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.kh.bookmanager.book.Book;
 import com.kh.bookmanager.book.BookController;
+import com.kh.bookmanager.member.Member;
 
 public class BookMenu {
 	
@@ -25,9 +26,10 @@ public class BookMenu {
 			
 			switch(sc.nextInt()) {
 			case 1 :
-				//bookController의 searchAllBooks()를 호출하고
-				//결과값을 출력
-				
+				List<Book> bookList = bookController.searchAll();
+				for (Book b : bookList) {
+					System.out.println(b);
+				}
 				break;
 			case 2 : 
 				//registBook 메서드를 호출해 사용자로부터 추가할 도서 정보를 입력받고
