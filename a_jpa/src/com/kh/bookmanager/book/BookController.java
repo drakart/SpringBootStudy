@@ -16,11 +16,6 @@ public class BookController {
 		return bookService.selectBookWithRank();
 	}
 
-	public List<Book> searchAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	
 	
