@@ -16,7 +16,7 @@ public class MemberController {
 		return memberService.memberAuthenticate(userId, password);
 	}
 	
-	public Member findMemberById(String userId) {
+	public Member searchById(String userId) {
 		return memberService.findMemberById(userId);
 	}
 	

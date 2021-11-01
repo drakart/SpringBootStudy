@@ -1,6 +1,7 @@
 package com.kh.bookmanager.member;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ import lombok.Data;
 //number -> int, double
 @Entity
 @DynamicUpdate //변경이 감지된 속성만 쿼리에 반영
-@DynamicInsert //값이 null이 아닌 속성만 쿼리에 반영 
+@DynamicInsert //값이 null이 아닌 속성만 쿼리에 반영
 @Data
 public class Member {	
 	
@@ -43,9 +44,9 @@ public class Member {
 	private String grade;
 	private String tell;
 	@Column(columnDefinition = "date default sysdate")
-	private Date rentableDate;
+	private LocalDateTime rentableDate;
 	@Column(columnDefinition = "date default sysdate")
-	private Date regDate;
+	private LocalDateTime regDate;
 	@Column(columnDefinition = "number default 0")
 	private Boolean isLeave;
 	

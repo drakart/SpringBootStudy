@@ -15,23 +15,21 @@ import com.kh.bookmanager.common.code.jpa.JpaTemplate;
 //비지니스 로직을 Service가 담당하기 때문에 Transaction 관리도 Service가 담당.
 //commit,rollback을 Service 클래스에서 처리
 public class MemberService {
-
-	private MemberRepository memberRepository = new MemberRepository();
 	
+	private MemberRepository memberRepository = new MemberRepository();
+
 	public Member memberAuthenticate(String userId, String password) {
 		
 		EntityManager em = JpaTemplate.createEntityManager();
-		//find() : 조회
 		
 		try {
-			Member member = em.find(Member.class, userId);
+			Member member = em.find(Member.class,userId); //find() : 조회
 			if(member == null) return null;
 			if(member.getPassword().equals(password)) return member;
-			
-		} finally {
+		}finally {
 			em.close();
 		}
-
+		
 		return null;
 	}
 
@@ -41,9 +39,10 @@ public class MemberService {
 		
 		try {
 			member = em.find(Member.class, userId);
-		}finally {
+		} finally {
 			em.close();
 		}
+		
 		return member;
 	}
 
@@ -87,8 +86,8 @@ public class MemberService {
 		int res = 0;
 		
 		try {
-			Member memberEntity = em.find(Member.class, member.getUserId());
-			memberEntity.setPassword(member.getPassword());
+			em.find(Member.class, member.getUserId())
+			  .setPassword(member.getPassword());
 			tx.commit();
 			res = 1;
 		} catch (Exception e) {
@@ -102,7 +101,6 @@ public class MemberService {
 	}
 
 	public int removeMember(String userId) {
-		
 		EntityManager em = JpaTemplate.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		int res = 0;
@@ -120,6 +118,7 @@ public class MemberService {
 		}finally {
 			em.close();
 		}
+		
 		return res;
 	}
 

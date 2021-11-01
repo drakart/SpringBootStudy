@@ -14,7 +14,7 @@ public class MemberMenu {
 		String userId = "";
 		String password = "";
 		
-		while (true) {
+		while(true) {
 			System.out.println("\n***  회원 관리 프로그램 ***");
 			System.out.println("1. 회원 전체 조회");
 			System.out.println("2. 새 회원 등록");
@@ -68,11 +68,10 @@ public class MemberMenu {
 				//만약 반환된 Member가 null이라면 "존재하지 않는 회원입니다." 출력
 				System.out.print("조회 할 회원의 아이디를 입력하세요 :" );
 				userId = sc.next();
-				Member searchMember = memberController.findMemberById(userId);
+				Member searchMember = memberController.searchById(userId);
 				
 				if(searchMember != null) {
 					System.out.println(searchMember);
-					
 				}else {
 					System.out.println("존재하지 않는 회원입니다.");
 				}

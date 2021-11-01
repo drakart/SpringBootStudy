@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 //DAO의 메서드는 하나의 메서드에서 하나의 쿼리만 처리하도록 작성
 public class MemberRepository {
 	
-	public List<Member> findAllMember(EntityManager em){
+	public List<Member> findAllMember(EntityManager em) {
 		return em.createQuery("from Member",Member.class).getResultList();
 	}
 	

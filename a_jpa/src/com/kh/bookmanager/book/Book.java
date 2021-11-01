@@ -1,26 +1,23 @@
 package com.kh.bookmanager.book;
 
-import java.sql.Date;
-
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
 
 import lombok.Data;
 
 @Entity
 @DynamicUpdate //변경이 감지된 속성만 쿼리에 반영
-@DynamicInsert //값이 null이 아닌 속성만 쿼리에 반영 
+@DynamicInsert //값이 null이 아닌 속성만 쿼리에 반영
 @Data
 public class Book {
-
+	
 	@Id
-	@GeneratedValue // JPA정책에 따라 식별자를 자동으로 생성
+	@GeneratedValue  //JPA 정책에 따라 식별자를 자동으로 생성
 	private Long bkIdx;
 	private String isbn;
 	private String category;
@@ -30,9 +27,21 @@ public class Book {
 	@Column(columnDefinition = "number default 1")
 	private Integer bookAmt;
 	@Column(columnDefinition = "date default sysdate")
-	private Date regDate;
+	private LocalDateTime regDate;
 	@Column(columnDefinition = "number default 0")
 	private Integer rentCnt;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

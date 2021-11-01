@@ -1,6 +1,8 @@
 package com.kh.bookmanager.rent;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,15 +18,17 @@ import com.kh.bookmanager.book.Book;
 import com.kh.bookmanager.member.Member;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @DynamicUpdate //변경이 감지된 속성만 쿼리에 반영
-@DynamicInsert //값이 null이 아닌 속성만 쿼리에 반영 
+@DynamicInsert //값이 null이 아닌 속성만 쿼리에 반영
 @Data
+@ToString(exclude = "rent")
 public class RentBook {
 	@Id
 	@GeneratedValue
-	private Long rbIdx;	
+	private Long rbIdx;
 	
 	@ManyToOne
 	@JoinColumn(name = "bkIdx")
@@ -35,13 +39,28 @@ public class RentBook {
 	private Rent rent;
 	
 	@Column(columnDefinition = "date default sysdate")
-	private Date regDate;
+	private LocalDateTime regDate;
+	
 	private String state;
 	
 	@Column(columnDefinition = "date default sysdate+7")
-	private Date returnDate;
+	private LocalDateTime returnDate;
 	
 	@Column(columnDefinition = "number default 0")
 	private Integer extensionCnt;
-
+	
+	public void changeRent(Rent rent) {
+		this.rent = rent;
+		rent.getRentBooks().add(this);
+	}
 }
+
+
+
+
+
+
+
+
+
+
